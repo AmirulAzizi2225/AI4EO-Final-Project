@@ -258,21 +258,22 @@ cluster_to_class = {
 ![comparison-im1](comparison-im1.png)
 
 ### Quantitative
-
 #### Confusion Matrix
-```sh
-# Confusion matrix between models
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+The confusion matrix visualises how often each class label from the supervised classification matches the corresponding class from the unsupervised result, helping identify agreement and misclassification patterns.
 
-# Flatten both arrays
-pred_rf = classified_rf.flatten()
-pred_kmeans = label_image_remapped.flatten()  # Ensure k-means is remapped to match class order
-
-# Compute confusion matrix
-cm = confusion_matrix(pred_rf, pred_kmeans)
-disp = ConfusionMatrixDisplay(confusion_matrix=cm)
-```
 ![conf-mat-im1](confusion-matrix-im1.png)
 
 #### Class-wise distribution comparison
+This class-wise distribution plot compares the number of pixels assigned to each land cover class by the supervised and unsupervised methods, highlighting differences in area estimation across categories.
+
+![class-dist-im1](class-distribution-im1.png)
+
+
+
+
+
+
+
+
+
 
