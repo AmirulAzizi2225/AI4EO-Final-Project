@@ -150,7 +150,6 @@ labels = kmeans.fit_predict(X)
 label_image = labels.reshape(h, w)
 ```
 
-
 Since the output clusters are arbitrary, we manually **remapped the cluster IDs** to meaningful land cover classes (e.g., vegetation, water, cloud, urban) and assigned corresponding colors:
 - Green: Vegetation
 - Blue: Water
