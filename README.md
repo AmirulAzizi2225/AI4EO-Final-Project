@@ -66,7 +66,7 @@ The data are retrieved using the Copernicus Data Space Ecosystem API, with filte
 
 ## 🧪 2. Preprocessing and Feature Extraction
 
-The **Normalized Difference Vegetation Index (NDVI)** is computed to enhance the visibility of vegetation using:
+### Normalized Difference Vegetation Index (NDVI)
 
 **NDVI** = (NIR - RED) / (NIR + RED)
 
@@ -93,7 +93,7 @@ plt.show()
 NDVI visualisation of the region of interest:
 ![NDVI-image1](NDVI-image-1.jpg)
 
-**RGB Composite**
+### RGB Composite
 
 To help visually interpret the land surface, a true-colour RGB composite was created by stacking the Sentinel-3 red, green, and blue bands in the standard order.  The raw radiance values are normalized to the range [0, 1] to ensure consistent contrast and brightness for display. This visualization simulates how the scene would appear to the human eye, allowing us to clearly distinguish between vegetation (green areas), urban zones (gray or brown), and water (dark or bluish areas).
 
@@ -117,7 +117,22 @@ plt.title("RGB Composite from Sentinel-3")
 plt.axis("off")
 plt.show()
 ```
+RGB Stacked Bands:
+![rgb-image1](rgb-image-1.jpg)
 
+### Preparing data for classification
+
+Data must be made NumPy array and cleaned to remove NaN values
+```sh
+# Make sure NDVI is a NumPy array (ndvi) and cleaned (remove NaNs):
+ndvi_clean = np.nan_to_num(ndvi.values.astype('float32'))
+```
+and reshape for clustering
+```sh
+# Reshape NDVI for clustering
+h, w = ndvi_clean.shape
+X = ndvi_clean.reshape(-1, 1)  # 1 feature (NDVI), many pixels
+```
 
 ---
 
@@ -125,7 +140,16 @@ plt.show()
 
 ### 🔹 Unsupervised Classification (K-Means)
 
-K-Means clustering was applied to the preprocessed imagery. It groups pixels based on spectral similarity without using ground truth. The result (`label_image`) assigns each pixel a cluster ID.
+K-Means clustering applied to the preprocessed imagery. It groups pixels based on spectral similarity without using ground truth. The result (`label_image`) assigns each pixel a cluster ID.
+
+```sh
+from sklearn.cluster import KMeans
+
+kmeans = KMeans(n_clusters=4, random_state=42)
+labels = kmeans.fit_predict(X)
+label_image = labels.reshape(h, w)
+```
+
 
 Since the output clusters are arbitrary, we manually **remapped the cluster IDs** to meaningful land cover classes (e.g., vegetation, water, cloud, urban) and assigned corresponding colors:
 - Green: Vegetation
