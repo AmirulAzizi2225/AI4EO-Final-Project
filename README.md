@@ -268,6 +268,14 @@ This class-wise distribution plot compares the number of pixels assigned to each
 
 ![class-dist-im1](class-distribution-im1.png)
 
+#### Pixel agreement score 
+**Pixel-wise agreement** was computed between the unsupervised (`label_image`) and supervised (`classified_rf`) classification outputs. It compares each pixel and computes the proportion of pixels that have the same class label in both methods:
+```sh
+# Pixel-wise agreement
+agreement = (label_image == classified_rf)
+agreement_score = np.sum(agreement) / agreement.size
+```
+This calculation yielded a pixel-wise agreement = 37.84%
 
 
 
