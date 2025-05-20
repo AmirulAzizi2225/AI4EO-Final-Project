@@ -184,10 +184,58 @@ custom_colors = {
 cmap_list = [custom_colors[cluster_to_label[i]] for i in range(n_clusters)]
 cmap = ListedColormap(cmap_list)
 ```
+![im1-coloured](k-mean-im1-coloured.png)
 
 ### 🔸 Supervised Classification (Random Forest)
 
 We trained a **Random Forest** model using manually labeled pixels as training data. Once trained, the model was applied to the entire image to classify all pixels based on learned patterns. The result is stored as `classified_rf`.
+
+```sh
+# RANDOM FOREST LAND COVER CLASSIFICATION
+
+from sklearn.ensemble import RandomForestClassifier
+from matplotlib.colors import ListedColormap
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Step 1: Preparation of features stack [Red, Green, Blue, NDVI]
+features = np.stack([
+    red.values,
+    green.values,
+    blue.values,
+    ndvi.values
+], axis=-1)
+
+h, w, d = features.shape
+X = features.reshape(-1, d)
+
+# Step 2: Manually label sample pixels (small training patches)
+y_mask = -1 * np.ones((h, w), dtype=int)
+
+# Define 4 distinct regions across image
+y_mask[3000:3100, 800:900] = 3   # Bare Soil
+y_mask[100:200, 100:200] = 1     # Water
+y_mask[1000:1100, 2000:2100] = 2 # Cloud
+y_mask[3700:3800, 4000:4100] = 0 # Vegetation
+
+# Step 3: Prepare training data
+y_flat = y_mask.flatten()
+train_idx = np.where(y_flat != -1)[0]
+X_train = X[train_idx]
+y_train = y_flat[train_idx]
+
+# Step 4: Train Random Forest classifier
+clf = RandomForestClassifier(n_estimators=100, random_state=42)
+clf.fit(X_train, y_train)
+
+# Step 5: Predict full image
+y_pred = clf.predict(X)
+classified_rf = y_pred.reshape(h, w)
+```
+
+
+
 
 This same workflow was applied to a second Sentinel-3 image to assess the **generalizability** of the model.
 
