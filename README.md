@@ -272,4 +272,7 @@ pred_kmeans = label_image_remapped.flatten()  # Ensure k-means is remapped to ma
 cm = confusion_matrix(pred_rf, pred_kmeans)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 ```
+![conf-mat-im1](confusion-matrix-im1.png)
+
+#### Class-wise distribution comparison
 
