@@ -233,15 +233,23 @@ clf.fit(X_train, y_train)
 y_pred = clf.predict(X)
 classified_rf = y_pred.reshape(h, w)
 ```
+![rf-im1](rf-im1.png)
 
-
-
-
-This same workflow was applied to a second Sentinel-3 image to assess the **generalizability** of the model.
-
+The exact same workflow was applied to a second Sentinel-3 image to assess the **generalizability** of the model.
 ---
 
-## 🖼️ 4. Visualisation
+## 🖼️ 4. Analysis (Qualitative and quantitative)
 
-To facilitate comparison, both classification results were plotted side by side using consistent colormaps.
+To facilitate a clear and meaningful comparison between the supervised and unsupervised classification outputs, both results were plotted side by side using a consistent colormap. This ensured that identical land cover classes—such as vegetation, water, and urban areas—were represented by the same colors across both maps. By standardizing the color scheme, visual discrepancies due to class label mismatches were minimized, allowing for more intuitive interpretation of spatial patterns and classification agreement between the two methods. This approach also helped in visually identifying regions of confusion, such as areas affected by cloud cover or mixed land use.
+
+```sh
+# Define a mapping from KMeans cluster ID to real class ID
+cluster_to_class = {
+    0: 1,  # cluster 0 → water
+    1: 0,  # cluster 1 → vegetation
+    2: 2,  # cluster 2 → built-up
+    3: 3   # cluster 3 → cloud
+}
+```
+
 
