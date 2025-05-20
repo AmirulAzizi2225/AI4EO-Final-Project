@@ -149,12 +149,41 @@ kmeans = KMeans(n_clusters=4, random_state=42)
 labels = kmeans.fit_predict(X)
 label_image = labels.reshape(h, w)
 ```
+![uncoloured-im1](kmeans-uncoloured-image1.png)
 
-Since the output clusters are arbitrary, we manually **remapped the cluster IDs** to meaningful land cover classes (e.g., vegetation, water, cloud, urban) and assigned corresponding colors:
+Since the output clusters are arbitrary (meaningless colour scheme), we can manually **remapped the cluster IDs** to meaningful land cover classes (e.g., vegetation, water, cloud, urban) and assigned corresponding colors:
 - Green: Vegetation
 - Blue: Water
 - Grey: Cloud
 - Brown: Urban/Bare Soil
+
+```sh
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+from matplotlib.colors import ListedColormap
+
+n_clusters = 4
+
+cluster_to_label = {
+    0: "Vegetation",
+    1: "Water",
+    2: "Cloud",
+    3: "Bare Soil"
+}
+
+# Use meaningful colour for ground visualisation
+custom_colors = {
+    "Cloud": "#888888",
+    "Vegetation": "#1f962b",
+    "Water": "#377eb8",
+    "Bare Soil": "#d9a33c"
+}
+
+# Build color map according to cluster-to-label mapping
+cmap_list = [custom_colors[cluster_to_label[i]] for i in range(n_clusters)]
+cmap = ListedColormap(cmap_list)
+```
 
 ### 🔸 Supervised Classification (Random Forest)
 
