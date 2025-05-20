@@ -90,6 +90,8 @@ plt.title("NDVI from Sentinel-3")
 plt.axis("off")
 plt.show()
 ```
+NDVI visualisation of the region of interest:
+![NDVI-image1](NDVI-image-1.jpg)
 
 **RGB Composite**
 
