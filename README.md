@@ -12,9 +12,28 @@ See diagram below on the principle behind how the K-means clustering group the d
 ![K-means example](56854k-means-clustering.webp)
 
 See diagram below on the principle behind how Random Forest classification works:
-![Random-forest-example](
+![Random-forest-example](Random-forest-concept.jpg)
 
 ---
+## Prerequisites
+
+The following steps need to be executed to run the code:
+
+* Mounting Google Drive on Google Colab
+  ```sh
+  from google.colab import drive
+  drive.mount('/content/drive')
+  ```
+* Install plug-in pandas
+  ```sh
+  !pip install requests shapely pandas
+  ```
+* Import important libraries
+  ```sh
+  import requests
+  import pandas as pd
+  import os
+  ```
 
 ## 🛰️ 1. Data Collection
 
@@ -22,7 +41,26 @@ Level-1 OLCI imagery were acquired from **Sentinel-3** for the area of interest.
 - **Image 1:** June–July 2023
 - **Image 2:** Another scene with a similar time frame
 
-The data was retrieved using the Copernicus Data Space Ecosystem API, with filtering by geographic bounding box and acquisition date. 
+```sh
+def get_access_and_refresh_token(username, password):
+    url = "https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token"
+    data = {
+        "grant_type": "password",
+        "username": username,
+        "password": password,
+        "client_id": "cdse-public",
+    }
+    response = requests.post(url, data=data)
+    response.raise_for_status()
+    tokens = response.json()
+    return tokens["access_token"], tokens["refresh_token"]
+
+# ESA Sentinel-3 credentials 
+username = "# replace with your credentials"
+password = "# replace with your credentials"
+access_token, refresh_token = get_access_and_refresh_token(username, password)
+```
+The data are retrieved using the Copernicus Data Space Ecosystem API, with filtering by geographic bounding box and acquisition date. 
 
 ---
 
@@ -39,6 +77,45 @@ NDVI compares how much near-infrared (NIR) light vegetation reflects versus how 
 *   Healthy plants absorb most red light for photosynthesis
 *   Healthy plants reflect most NIR light due to cell structure
 *   Water, soil, and urban areas reflect both differently
+
+```sh
+# Calculate NDVI
+ndvi = (nir - red) / (nir + red)
+
+# Plot
+plt.figure(figsize=(10, 6))
+plt.imshow(ndvi, cmap='RdYlGn')
+plt.colorbar(label='NDVI')
+plt.title("NDVI from Sentinel-3")
+plt.axis("off")
+plt.show()
+```
+
+**RGB Composite**
+
+To help visually interpret the land surface, a true-colour RGB composite was created by stacking the Sentinel-3 red, green, and blue bands in the standard order.  The raw radiance values are normalized to the range [0, 1] to ensure consistent contrast and brightness for display. This visualization simulates how the scene would appear to the human eye, allowing us to clearly distinguish between vegetation (green areas), urban zones (gray or brown), and water (dark or bluish areas).
+
+```sh
+# Stack bands into RGB order: [Red, Green, Blue]
+rgb = np.stack([
+    red.values,
+    green.values,
+    blue.values
+], axis=-1)
+
+# Normalize to [0, 1] for display
+rgb_min = np.nanmin(rgb)
+rgb_max = np.nanmax(rgb)
+rgb_norm = (rgb - rgb_min) / (rgb_max - rgb_min)
+
+# Show RGB image
+plt.figure(figsize=(10, 10))
+plt.imshow(rgb_norm)
+plt.title("RGB Composite from Sentinel-3")
+plt.axis("off")
+plt.show()
+```
+
 
 ---
 
