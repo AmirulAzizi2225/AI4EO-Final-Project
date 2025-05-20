@@ -34,7 +34,7 @@ The following steps need to be executed before running the code in the notebook:
   import pandas as pd
   import os
   ```
-[View the notebook](./Final_Project_AI4EO.ipynb)
+[Access the notebook here](./Final_Project_AI4EO.ipynb)
 
 ## 1. Data Collection
 
@@ -240,7 +240,9 @@ The exact same workflow was applied to a second Sentinel-3 image to assess the *
 
 ---
 
-## 4. Analysis (qualitative and quantitative)
+## 4. Classification Analysis 
+
+### Qualitative (Side-by side visual)
 
 To facilitate a clear and meaningful comparison between the supervised and unsupervised classification outputs, both results were plotted side by side using a consistent colormap. This ensured that identical land cover classes such as vegetation, water, and urban areas were represented by the same colors across both maps. By standardising the color scheme, visual discrepancies due to class label mismatches were minimized, allowing for more intuitive interpretation of spatial patterns and classification agreement between the two methods. This approach also helped in visually identifying regions of confusion, such as areas affected by cloud cover or mixed land use.
 
@@ -255,5 +257,19 @@ cluster_to_class = {
 ```
 ![comparison-im1](comparison-im1.png)
 
+### Quantitative
 
+#### Confusion Matrix
+```sh
+# Confusion matrix between models
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+# Flatten both arrays
+pred_rf = classified_rf.flatten()
+pred_kmeans = label_image_remapped.flatten()  # Ensure k-means is remapped to match class order
+
+# Compute confusion matrix
+cm = confusion_matrix(pred_rf, pred_kmeans)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+```
 
