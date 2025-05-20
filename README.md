@@ -17,7 +17,7 @@ See diagram below on the principle behind how Random Forest classification works
 ---
 ## Prerequisites
 
-The following steps need to be executed to run the code:
+The following steps need to be executed before running the code in the notebook:
 
 * Mounting Google Drive on Google Colab
   ```sh
@@ -34,8 +34,9 @@ The following steps need to be executed to run the code:
   import pandas as pd
   import os
   ```
+[View the notebook](./Final_Project_AI4EO.ipynb)
 
-## 🛰️ 1. Data Collection
+## 1. Data Collection
 
 Level-1 OLCI imagery were acquired from **Sentinel-3** for the area of interest. The selected time frames include:
 - **Image 1:** June–July 2023
@@ -64,7 +65,7 @@ The data are retrieved using the Copernicus Data Space Ecosystem API, with filte
 
 ---
 
-## 🧪 2. Preprocessing and Feature Extraction
+## 2. Preprocessing and Feature Extraction
 
 ### Normalized Difference Vegetation Index (NDVI)
 
@@ -136,7 +137,7 @@ X = ndvi_clean.reshape(-1, 1)  # 1 feature (NDVI), many pixels
 
 ---
 
-## 🤖 3. Classification Methods
+## 3. Classification Methods
 
 ### 🔹 Unsupervised Classification (K-Means)
 
@@ -235,12 +236,13 @@ classified_rf = y_pred.reshape(h, w)
 ```
 ![rf-im1](rf-im1.png)
 
-The exact same workflow was applied to a second Sentinel-3 image to assess the **generalizability** of the model.
+The exact same workflow was applied to a second Sentinel-3 image to assess the **generalisability** of the model.
+
 ---
 
-## 🖼️ 4. Analysis (Qualitative and quantitative)
+## 4. Analysis (qualitative and quantitative)
 
-To facilitate a clear and meaningful comparison between the supervised and unsupervised classification outputs, both results were plotted side by side using a consistent colormap. This ensured that identical land cover classes—such as vegetation, water, and urban areas—were represented by the same colors across both maps. By standardizing the color scheme, visual discrepancies due to class label mismatches were minimized, allowing for more intuitive interpretation of spatial patterns and classification agreement between the two methods. This approach also helped in visually identifying regions of confusion, such as areas affected by cloud cover or mixed land use.
+To facilitate a clear and meaningful comparison between the supervised and unsupervised classification outputs, both results were plotted side by side using a consistent colormap. This ensured that identical land cover classes such as vegetation, water, and urban areas were represented by the same colors across both maps. By standardising the color scheme, visual discrepancies due to class label mismatches were minimized, allowing for more intuitive interpretation of spatial patterns and classification agreement between the two methods. This approach also helped in visually identifying regions of confusion, such as areas affected by cloud cover or mixed land use.
 
 ```sh
 # Define a mapping from KMeans cluster ID to real class ID
@@ -251,5 +253,7 @@ cluster_to_class = {
     3: 3   # cluster 3 → cloud
 }
 ```
+![comparison-im1](comparison-im1.png)
+
 
 
