@@ -277,7 +277,8 @@ agreement_score = np.sum(agreement) / agreement.size
 ```
 This calculation yielded a pixel-wise agreement = 37.84%
 
-
+## LULC Classification on another image
+The identical classification pipeline was executed on a second Sentinel-3 image to evaluate the model’s generalisability across varying acquisition conditions. This step aimed to assess the spatial and temporal robustness of the trained classifier and its consistency in performing accurate, pixel-level land cover classifcation.
 
 
 
