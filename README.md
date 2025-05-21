@@ -5,11 +5,11 @@
 Accurate land cover classification is essential for monitoring environmental change, supporting urban planning, and informing policy decisions. Traditional classification methods can be labor-intensive and require extensive ground truth data. The goal of this project is to classify land cover over the southern United Kingdom region using Sentinel-3 satellite imagery and machine learning techniques. Both **unsupervised (K-Means)** and **supervised (Random Forest)** classification methods will be implemented, and their performance will be evaluated through visual and statistical comparisons.
 
 Figure below summarise the workflow of this project:
+![LULC-workflow](LULC-workflow.jpg)
 
+**K-Means clustering** is an unsupervised machine learning algorithm used to group data points such as image pixels into a predefined number of clusters based on their feature similarity. In the context of remote sensing, each pixel is treated as a data point, with its spectral values (e.g., RGB, NDVI) serving as input features. The algorithm works by randomly initialising cluster centroids, assigning each pixel to the nearest centroid, recalculating centroids based on cluster membership, and repeating this process until convergence (Stehman et al. 2019). The result is a classified image where each pixel belongs to one of the K clusters. However, these clusters are assigned arbitrary labels, so their real-world meaning (e.g., vegetation, water, urban) must be interpreted manually. While K-Means is simple, fast and effective when classes are well-separated, it requires prior knowledge of the number of clusters and is sensitive to initial conditions and noise.
 
-K-Means clustering is an unsupervised machine learning algorithm used to group data points such as image pixels into a predefined number of clusters based on their feature similarity. In the context of remote sensing, each pixel is treated as a data point, with its spectral values (e.g., RGB, NDVI) serving as input features. The algorithm works by randomly initializing cluster centroids, assigning each pixel to the nearest centroid, recalculating centroids based on cluster membership, and repeating this process until convergence. The result is a classified image where each pixel belongs to one of the K clusters. However, these clusters are assigned arbitrary labels, so their real-world meaning (e.g., vegetation, water, urban) must be interpreted manually. While K-Means is simple, fast, and effective when classes are well-separated, it requires prior knowledge of the number of clusters and is sensitive to initial conditions and noise.
-
-Random Forest is a supervised machine learning algorithm that is widely used for classification and regression tasks, including land cover classification in remote sensing. It works by constructing an ensemble of decision trees during training. Each tree is trained on a random subset of the training data (a process called bagging), and at each split in a tree, a random subset of features is considered. This randomness increases model diversity and reduces overfitting. When classifying a new data point such as a pixel in a satellite image, the prediction is made by aggregating the votes from all trees in the forest (typically via majority vote). In the context of land cover classification, Random Forest uses labeled training pixels with known class types (e.g., vegetation, water, urban) and learns to generalize from their spectral signatures. It is robust to noise, handles high-dimensional data well, and provides feature importance metrics. However, it requires quality training labels and may struggle if classes are spectrally similar or poorly represented in the training data.
+**Random Forest** is a supervised machine learning algorithm that is widely used for classification and regression tasks, including land cover classification in remote sensing. It works by constructing an ensemble of decision trees during training. Each tree is trained on a random subset of the training data (a process called bagging), and at each split in a tree, a random subset of features is considered. This randomness increases model diversity and reduces overfitting. When classifying a new data point such as a pixel in a satellite image, the prediction is made by aggregating the votes from all trees in the forest (typically via majority vote). In the context of land cover classification, Random Forest uses labeled training pixels with known class types (e.g., vegetation, water, urban) and learns to generalise from their spectral signatures. It is robust to noise, handles high-dimensional data well, and provides feature importance metrics. However, it requires quality training labels and may struggle if classes are spectrally similar or poorly represented in the training data.
 
 See diagram below on the principle behind how the K-means clustering group the data: 
 ![K-means example](56854k-means-clustering.webp)
@@ -281,10 +281,23 @@ This calculation yielded a pixel-wise agreement = 37.84%
 ## LULC Classification on another image
 The identical classification pipeline was executed on a second Sentinel-3 image to evaluate the model’s generalisability across varying acquisition conditions. This step aimed to assess the spatial and temporal robustness of the trained classifier and its consistency in performing accurate, pixel-level land cover classifcation.
 
+### Pre-processing and feature extraction
+
+#### Normalised Difference Vegetation Index (NDVI)
 ![ndvi-im2](NDVI-image-2.jpg)
+
+#### RGB Composite
 ![rgb-im2](rgb-image-2.jpg)
+
+### Classification results
+
+#### K-Means Clustering (Unsupervised)
 ![kmean-im2](k-mean-im2-coloured.png)
+
+#### Random Forest (Supervised)
 ![rf-im2](rf-im2.png)
+
+### Classification Analysis
 ![compare-im2](comparison-im2.png)
 ![conf-matr-im2](confusion-matrix-im2.png)
 ![class-dist-im2](class-distribution-im2.png)
