@@ -2,7 +2,7 @@
 
 ## 📌 Problem Description
 
-Accurate land cover classification is essential for monitoring environmental change, supporting urban planning, and informing policy decisions. Traditional classification methods can be labor-intensive and require extensive ground truth data. The goal of this project is to classify land cover over the southern United Kingdom region using Sentinel-3 satellite imagery and machine learning techniques. Both **unsupervised (K-Means)** and **supervised (Random Forest)** classification methods will be implemented, and their performance will be evaluated through visual and statistical comparisons.
+An accurate land cover classification is essential for monitoring environmental change, supporting urban planning, and informing policy decisions. Traditional classification methods can be labor-intensive and require extensive ground truth data. The goal of this project is to classify land cover over the southern United Kingdom region using Sentinel-3 satellite imagery and machine learning techniques. Both **unsupervised (K-Means)** and **supervised (Random Forest)** classification methods will be implemented, and their performance will be evaluated through visual and statistical comparisons.
 
 Figure below summarise the workflow of this project:
 ![LULC-workflow](LULC-workflow.jpg)
@@ -14,7 +14,7 @@ Figure below summarise the workflow of this project:
 See diagram below on the principle behind how the K-means clustering group the data: 
 ![K-means example](56854k-means-clustering.webp)
 
-See diagram below on the principle behind how Random Forest classification works:
+See diagram below on the principle behind how Random Forest classification works (Petrović 2019):
 ![Random-forest-example](Random-forest-concept.jpg)
 
 ---
@@ -65,6 +65,10 @@ password = "# replace with your credentials"
 access_token, refresh_token = get_access_and_refresh_token(username, password)
 ```
 The data are retrieved using the Copernicus Data Space Ecosystem API, with filtering by geographic bounding box and acquisition date. 
+
+Raw Sentinel-3 Imagery of the area of interest:
+
+![raw-im1](raw-image1.jpg)
 
 ---
 
@@ -257,6 +261,7 @@ cluster_to_class = {
 }
 ```
 ![comparison-im1](comparison-im1.png)
+The unsupervised classification (K-Means) appears to perform better at distinguishing key land cover types such as water, vegetation, and bare soil, capturing the major features more distinctly than the supervised classification. However, the results also highlight a persistent challenge in remote sensing: the presence of clouds. Cloud-covered regions can easily confuse the model, leading to misclassifications, which underscores the importance of effective cloud detection and masking in satellite-based analysis.
 
 ### Quantitative
 #### Confusion Matrix
@@ -279,7 +284,7 @@ agreement_score = np.sum(agreement) / agreement.size
 This calculation yielded a pixel-wise agreement = 37.84%
 
 ## LULC Classification on another image
-The identical classification pipeline was executed on a second Sentinel-3 image to evaluate the model’s generalisability across varying acquisition conditions. This step aimed to assess the spatial and temporal robustness of the trained classifier and its consistency in performing accurate, pixel-level land cover classifcation.
+The identical classification pipeline was executed on a second Sentinel-3 image to evaluate the model’s generalisability across varying acquisition conditions. This step aimed to assess the spatial robustness of the trained classifier and its consistency in performing accurate, pixel-level land cover classifcation.
 
 ### Pre-processing and feature extraction
 
@@ -303,6 +308,11 @@ The identical classification pipeline was executed on a second Sentinel-3 image 
 ![class-dist-im2](class-distribution-im2.png)
 
 
+## Environmental Impact Assessment
 
+## Reference:
+* Petrović, M. (2019, October 2). Machine learning: Introduction to Random Forest. DataHacker. https://datahacker.rs/012-machine-learning-introduction-to-random-forest/
+
+* 
 
 
