@@ -77,7 +77,7 @@ The data are retrieved using the Copernicus Data Space Ecosystem API, with filte
 
 Raw Sentinel-3 Imagery of the area of interest:
 
-<img src="raw-image1.jpg" alt="raw-im1" width="400"/>
+<img src="raw-image1.jpg" alt="raw-im1" width="500"/>
 
 ---
 
@@ -260,7 +260,6 @@ classified_rf = y_pred.reshape(h, w)
 
 <img src="rf-im1.png" alt="Random Forest Classification Image 1" width="500"/>
 
-
 ---
 
 ## 4. Classification Analysis 
@@ -278,6 +277,7 @@ cluster_to_class = {
     3: 3   # cluster 3 → cloud
 }
 ```
+
 ![comparison-im1](comparison-im1.png)
 
 The unsupervised classification (K-Means) appears to perform better at distinguishing key land cover types such as water, vegetation, and bare soil, capturing the major features more distinctly than the supervised classification. However, the results also highlight a persistent challenge in remote sensing: the presence of clouds. Cloud-covered regions can easily confuse the model, leading to misclassifications, which underscores the importance of effective cloud detection and masking in satellite-based analysis.
@@ -286,12 +286,14 @@ The unsupervised classification (K-Means) appears to perform better at distingui
 #### Confusion Matrix
 The confusion matrix visualises how often each class label from the supervised classification matches the corresponding class from the unsupervised result, helping identify agreement and misclassification patterns.
 
-![conf-mat-im1](confusion-matrix-im1.png)
+<img src="confusion-matrix-im1.png" alt="Confusion Matrix Image 1" width="500"/>
+
 
 #### Class-wise distribution comparison
 This class-wise distribution plot compares the number of pixels assigned to each land cover class by the supervised and unsupervised methods, highlighting differences in area estimation across categories.
 
-![class-dist-im1](class-distribution-im1.png)
+<img src="class-distribution-im1.png" alt="Class Distribution Image 1" width="500"/>
+
 
 #### Pixel agreement score 
 **Pixel-wise agreement** was computed between the unsupervised (`label_image`) and supervised (`classified_rf`) classification outputs. It compares each pixel and computes the proportion of pixels that have the same class label in both methods:
@@ -302,30 +304,46 @@ agreement_score = np.sum(agreement) / agreement.size
 ```
 This calculation yielded a pixel-wise agreement = 37.84%
 
+
 ## LULC Classification on another image
 The identical classification pipeline was executed on a second Sentinel-3 image to evaluate the model’s generalisability across varying acquisition conditions. This step aimed to assess the spatial robustness of the trained classifier and its consistency in performing accurate, pixel-level land cover classifcation.
+
+### Data Acquisition
+
+<img src="raw-image2.jpg" alt="Raw Image 2" width="500"/>
+
 
 ### Pre-processing and feature extraction
 
 #### Normalised Difference Vegetation Index (NDVI)
-![ndvi-im2](NDVI-image-2.jpg)
+
+<img src="NDVI-image-2.jpg" alt="NDVI Image 2" width="500"/>
+
 
 #### RGB Composite
-![rgb-im2](rgb-image-2.jpg)
+
+<img src="rgb-image-2.jpg" alt="RGB Image 2" width="500"/>
+
 
 ### Classification results
 
 #### K-Means Clustering (Unsupervised)
-![kmean-im2](k-mean-im2-coloured.png)
+
+<img src="k-mean-im2-coloured.png" alt="K-Means Classification Image 2" width="500"/>
+
 
 #### Random Forest (Supervised)
-![rf-im2](rf-im2.png)
+
+<img src="rf-im2.png" alt="Random Forest Classification Image 2" width="500"/>
+
 
 ### Classification Analysis
-![compare-im2](comparison-im2.png)
-![conf-matr-im2](confusion-matrix-im2.png)
-![class-dist-im2](class-distribution-im2.png)
 
+<img src="comparison-im2.png" alt="Comparison Image 2" width="700"/>
+
+<img src="confusion-matrix-im2.png" alt="Confusion Matrix Image 2" width="500"/>
+
+<img src="class-distribution-im2.png" alt="Class Distribution Image 2" width="500"/>
 
 ## 🍃 Environmental Impact Assessment
 
@@ -371,6 +389,6 @@ Results:
 
 * Wikipedia contributors. (2025, May 21). Confusion matrix. Wikipedia. https://en.wikipedia.org/wiki/Confusion_matrix
 
-* 
+* EUMETSAT. (n.d.). Sentinel-3 OLCI composites. Retrieved May 23, 2025, from https://fire.trainhub.eumetsat.int/docs/figure1_Sentinel-3_OLCI_RGB.html
 
 
