@@ -15,9 +15,11 @@ Figure below summarise the workflow of this project:
 **Random Forest** is a supervised machine learning algorithm that is widely used for classification and regression tasks, including land cover classification in remote sensing. It works by constructing an ensemble of decision trees during training. Each tree is trained on a random subset of the training data (a process called bagging), and at each split in a tree, a random subset of features is considered. This randomness increases model diversity and reduces overfitting. When classifying a new data point such as a pixel in a satellite image, the prediction is made by aggregating the votes from all trees in the forest (typically via majority vote). In the context of land cover classification, Random Forest uses labeled training pixels with known class types (e.g., vegetation, water, urban) and learns to generalise from their spectral signatures. It is robust to noise, handles high-dimensional data well, and provides feature importance metrics. However, it requires quality training labels and may struggle if classes are spectrally similar or poorly represented in the training data.
 
 See diagram below on the principle behind how the K-means clustering group the data: 
+
 <img src="56854k-means-clustering.webp" alt="K-means example" width="500"/>
 
 See diagram below on the principle behind how Random Forest classification works *(Petrović 2019)*:
+
 <img src="Random-forest-concept.jpg" alt="Random forest example" width="400"/>
 
 ---
