@@ -8,14 +8,14 @@ An accurate land cover classification is essential for monitoring environmental 
 Figure below summarise the workflow of this project:
 ![LULC-workflow](LULC-workflow.jpg)
 
-**K-Means clustering** is an unsupervised machine learning algorithm used to group data points such as image pixels into a predefined number of clusters based on their feature similarity. In the context of remote sensing, each pixel is treated as a data point, with its spectral values (e.g., RGB, NDVI) serving as input features. The algorithm works by randomly initialising cluster centroids, assigning each pixel to the nearest centroid, recalculating centroids based on cluster membership, and repeating this process until convergence (Stehman et al. 2019). The result is a classified image where each pixel belongs to one of the K clusters. However, these clusters are assigned arbitrary labels, so their real-world meaning (e.g., vegetation, water, urban) must be interpreted manually. While K-Means is simple, fast and effective when classes are well-separated, it requires prior knowledge of the number of clusters and is sensitive to initial conditions and noise.
+**K-Means clustering** is an unsupervised machine learning algorithm used to group data points such as image pixels into a predefined number of clusters based on their feature similarity. In the context of remote sensing, each pixel is treated as a data point, with its spectral values (e.g., RGB, NDVI) serving as input features. The algorithm works by randomly initialising cluster centroids, assigning each pixel to the nearest centroid, recalculating centroids based on cluster membership, and repeating this process until convergence *(Stehman et al. 2019)*. The result is a classified image where each pixel belongs to one of the K clusters. However, these clusters are assigned arbitrary labels, so their real-world meaning (e.g., vegetation, water, urban) must be interpreted manually. While K-Means is simple, fast and effective when classes are well-separated, it requires prior knowledge of the number of clusters and is sensitive to initial conditions and noise.
 
 **Random Forest** is a supervised machine learning algorithm that is widely used for classification and regression tasks, including land cover classification in remote sensing. It works by constructing an ensemble of decision trees during training. Each tree is trained on a random subset of the training data (a process called bagging), and at each split in a tree, a random subset of features is considered. This randomness increases model diversity and reduces overfitting. When classifying a new data point such as a pixel in a satellite image, the prediction is made by aggregating the votes from all trees in the forest (typically via majority vote). In the context of land cover classification, Random Forest uses labeled training pixels with known class types (e.g., vegetation, water, urban) and learns to generalise from their spectral signatures. It is robust to noise, handles high-dimensional data well, and provides feature importance metrics. However, it requires quality training labels and may struggle if classes are spectrally similar or poorly represented in the training data.
 
 See diagram below on the principle behind how the K-means clustering group the data: 
 ![K-means example](56854k-means-clustering.webp)
 
-See diagram below on the principle behind how Random Forest classification works (Petrović 2019):
+See diagram below on the principle behind how Random Forest classification works *(Petrović 2019)*:
 ![Random-forest-example](Random-forest-concept.jpg)
 
 ---
@@ -311,7 +311,7 @@ The identical classification pipeline was executed on a second Sentinel-3 image 
 
 ## 🍃 Environmental Impact Assessment
 
-### Estimated Carbon Emission from Cloud Computing
+### 1. Estimated Carbon Emission from Cloud Computing
 We can roughly estimate the carbon footprint of our Colab processing by:
 
 CO2 (kg) = Compute Time (hrs) x Power Usage Effectiveness x Energy Use (kWh/hr) x Carbon Intensity (kg CO 2/kWh) 
@@ -327,7 +327,7 @@ Estimated Emission:
 
 Sidenote: This emission is much lower compared to emission by a fieldwork-based land cover studies.
 
-### Absolute calculation of CO2 Emission 
+### 2. Absolute calculation of CO2 Emission 
 
 This website provides CO2 emission calculation based on the specifications of the machine used, operating hours and matched it with daily emission equivalent such as flights, tree-months and cars. 
 
@@ -340,26 +340,18 @@ For this project assessment, the following parameters were used:
 * Platform: Cloud Computing --> Google Cloud Platform
 * Server: Europe --> Europe-North-1
 
-Results: 
-
-
 [Link to Green Calculator](https://calculator.green-algorithms.org/)
 
+Results: 
 
-
-
-
-
-
-
-
-
-
-
-
+![carbon-footprint](Carbon-footprint.png)
 
 ## Reference:
 * Petrović, M. (2019, October 2). Machine learning: Introduction to Random Forest. DataHacker. https://datahacker.rs/012-machine-learning-introduction-to-random-forest/
+
+* IBM. (n.d.). Carbon footprint chart. IBM Documentation. Retrieved May 23, 2025, from https://www.ibm.com/docs/en/tarm/8.15.x?topic=charts-carbon-footprint-chart
+
+* Wikipedia contributors. (2025, May 21). Confusion matrix. Wikipedia. https://en.wikipedia.org/wiki/Confusion_matrix
 
 * 
 
