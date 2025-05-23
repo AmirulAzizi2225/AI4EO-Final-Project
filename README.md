@@ -308,7 +308,40 @@ The identical classification pipeline was executed on a second Sentinel-3 image 
 ![class-dist-im2](class-distribution-im2.png)
 
 
-## Environmental Impact Assessment
+## 🍃 Environmental Impact Assessment
+
+### Estimated Carbon Emission from Cloud Computing
+We can roughly estimate the carbon footprint of our Colab processing by:
+
+CO2 (kg) = Compute Time (hrs) x Power Usage Effectiveness x Energy Use (kWh/hr) x Carbon Intensity (kg CO 2/kWh) 
+
+Reasonable estimaated parameters to use:
+
+* Energy per Colab VM ≈ 0.05 kWh/hour (this is estimates for light to medium workloads)
+* PUE ≈ 1.1 (Source: Goolge energy-efficieint data centres)
+* Carbon Intensity = 0.05 - 0.4 kg CO2/kWh (varies by region and energy source)
+
+Estimated Emission: 
+15 hours x 0.05 kWh/hour x 1.1 x 0.1 kg CO2/kWh ≈ 0.011 kg of CO2
+
+Sidenote: This emission is much lower compared to emission by a fieldwork-based land cover studies.
+
+### Absolute calculation of CO2 Emission 
+
+[Link to Green Calculator](https://calculator.green-algorithms.org/)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Reference:
 * Petrović, M. (2019, October 2). Machine learning: Introduction to Random Forest. DataHacker. https://datahacker.rs/012-machine-learning-introduction-to-random-forest/
