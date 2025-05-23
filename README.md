@@ -40,6 +40,9 @@ The following steps need to be executed before running the code in the notebook:
   ```
 [Access the notebook here](./Final_Project_AI4EO.ipynb)
 
+[![Watch the video](https://img.youtube.com/vi/BGCmyY5JUKU/0.jpg)](https://youtu.be/BGCmyY5JUKU)
+
+
 ## 1. Data Collection
 
 Level-1 OLCI imagery were acquired from **Sentinel-3** for the area of interest. Image details are as follow:
