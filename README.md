@@ -279,6 +279,8 @@ cluster_to_class = {
 }
 ```
 ![comparison-im1](comparison-im1.png)
+<img src="comparison-im1.png" alt="Classification Comparison Image 1" width="500"/>
+
 The unsupervised classification (K-Means) appears to perform better at distinguishing key land cover types such as water, vegetation, and bare soil, capturing the major features more distinctly than the supervised classification. However, the results also highlight a persistent challenge in remote sensing: the presence of clouds. Cloud-covered regions can easily confuse the model, leading to misclassifications, which underscores the importance of effective cloud detection and masking in satellite-based analysis.
 
 ### Quantitative
