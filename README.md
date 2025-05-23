@@ -106,7 +106,9 @@ plt.axis("off")
 plt.show()
 ```
 NDVI visualisation of the region of interest:
-![NDVI-image1](NDVI-image-1.jpg)
+
+<img src="NDVI-image-1.jpg" alt="NDVI image 1" width="500"/>
+
 
 ### RGB Composite
 
@@ -133,7 +135,8 @@ plt.axis("off")
 plt.show()
 ```
 RGB Stacked Bands:
-![rgb-image1](rgb-image-1.jpg)
+
+<img src="rgb-image-1.jpg" alt="RGB image 1" width="500"/>
 
 ### Preparing data for classification
 
@@ -164,7 +167,9 @@ kmeans = KMeans(n_clusters=4, random_state=42)
 labels = kmeans.fit_predict(X)
 label_image = labels.reshape(h, w)
 ```
-![uncoloured-im1](kmeans-uncoloured-image1.png)
+
+<img src="kmeans-uncoloured-image1.png" alt="Uncoloured KMeans Classification" width="500"/>
+
 
 Since the output clusters are arbitrary (meaningless colour scheme), we can manually **remapped the cluster IDs** to meaningful land cover classes (e.g., vegetation, water, cloud, urban) and assigned corresponding colors:
 - Green: Vegetation
@@ -199,7 +204,9 @@ custom_colors = {
 cmap_list = [custom_colors[cluster_to_label[i]] for i in range(n_clusters)]
 cmap = ListedColormap(cmap_list)
 ```
-![im1-coloured](k-mean-im1-coloured.png)
+
+<img src="k-mean-im1-coloured.png" alt="Coloured KMeans Classification (Image 1)" width="500"/>
+
 
 ### 🔸 Supervised Classification (Random Forest)
 
@@ -248,7 +255,9 @@ clf.fit(X_train, y_train)
 y_pred = clf.predict(X)
 classified_rf = y_pred.reshape(h, w)
 ```
-![rf-im1](rf-im1.png)
+
+<img src="rf-im1.png" alt="Random Forest Classification Image 1" width="500"/>
+
 
 ---
 
