@@ -1,4 +1,5 @@
 # Land Use and Land Cover (LULC) Classification on Sentinel-3 Satellite Imageries
+# by: Amirul Azizi 22074200
 
 ## 📌 Problem Description
 
@@ -327,6 +328,20 @@ Estimated Emission:
 Sidenote: This emission is much lower compared to emission by a fieldwork-based land cover studies.
 
 ### Absolute calculation of CO2 Emission 
+
+This website provides CO2 emission calculation based on the specifications of the machine used, operating hours and matched it with daily emission equivalent such as flights, tree-months and cars. 
+
+For this project assessment, the following parameters were used:
+
+* Runtime: 15H 00M
+* Type of cores: CPU
+* Model: Core i7-10700 (I am using a macbook M1, hence an Intel i7 chip is the best equivalent)
+* Memory available: 64GB
+* Platform: Cloud Computing --> Google Cloud Platform
+* Server: Europe --> Europe-North-1
+
+Results: 
+
 
 [Link to Green Calculator](https://calculator.green-algorithms.org/)
 
