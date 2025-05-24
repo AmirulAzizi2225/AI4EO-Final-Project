@@ -1,17 +1,19 @@
-# Land use and land cover (LULC) classification of Sentinel-3 imageries using machine learning models
-by: Amirul Azizi 22074200
+# Land Use and Land Cover (LULC) classification of Sentinel-3 imageries using machine learning models
+by: Amirul Azizi 
+
+SID: 22074200
 
 ## 📌 Problem Description
 
 An accurate land cover classification is essential for monitoring environmental change, supporting urban planning, and informing policy decisions. Traditional classification methods can be labor-intensive and require extensive ground truth data. 
 
-The goal of this project is to classify land cover over the southern United Kingdom region using Sentinel-3 satellite imagery and machine learning techniques. Both **unsupervised (K-Means)** and **supervised (Random Forest)** classification methods will be implemented, and their performance will be evaluated through visual and statistical comparisons.
+The goal of this project is to classify land cover over the southern United Kingdom region using Sentinel-3 satellite imageries and machine learning techniques. Both **unsupervised (K-Means)** and **supervised (Random Forest)** classification methods will be implemented, and their performance will be evaluated through visual and statistical comparisons.
 
 The workflow of this project summarised in the figure below:
 
-<img src="LULC-workflow.jpg" alt="LULC workflow" width="600"/>
+<img src="LULC-workflow.jpg" alt="LULC workflow" width="700"/>
 
-## K-Means Clusterings and Random Forest
+## K-Means Clustering and Random Forest
 
 **K-Means clustering** is an unsupervised machine learning algorithm used to group data points such as image pixels into a predefined number of clusters based on their feature similarity. In the context of remote sensing, each pixel is treated as a data point, with its spectral values (e.g., RGB, NDVI) serving as input features. The algorithm works by randomly initialising cluster centroids, assigning each pixel to the nearest centroid, recalculating centroids based on cluster membership, and repeating this process until convergence *(Stehman et al. 2019)*. The result is a classified image where each pixel belongs to one of the K clusters. However, these clusters are assigned arbitrary labels, so their real-world meaning (e.g., vegetation, water, urban) must be interpreted manually. While K-Means is simple, fast and effective when classes are well-separated, it requires prior knowledge of the number of clusters and is sensitive to initial conditions and noise.
 
@@ -23,7 +25,7 @@ Figure below explains the principle behind how K-means clustering group the pixe
 
 See diagram below on the principle behind how Random Forest classification works *(Petrović 2019)*:
 
-<img src="Random-forest-concept.jpg" alt="Random forest example" width="400"/>
+<img src="Random-forest-concept.jpg" alt="Random forest example" width="600"/>
 
 ---
 ## Prerequisites
@@ -73,8 +75,8 @@ def get_access_and_refresh_token(username, password):
     return tokens["access_token"], tokens["refresh_token"]
 
 # ESA Sentinel-3 credentials 
-username = "# replace with your credentials"
-password = "# replace with your credentials"
+username = "#replace with your credentials"
+password = "#replace with your credentials"
 access_token, refresh_token = get_access_and_refresh_token(username, password)
 ```
 The raw Sentinel-3 imagery of the first area of interest:
@@ -87,9 +89,9 @@ The raw Sentinel-3 imagery of the first area of interest:
 
 ### Normalized Difference Vegetation Index (NDVI)
 
-**Normalised Difference Vegetation Index (NDVI)** is a widely used remote sensing index that quantifies vegetation health and density using satellite imagery. It can be computed via:
+**Normalised Difference Vegetation Index (NDVI)** is a widely used remote sensing index that quantifies vegetation health and density using satellite imagery and can be computed via:
 
-**NDVI** = (NIR - RED) / (NIR + RED)
+NDVI = (NIR - RED) / (NIR + RED)
 
 NDVI compares how much near-infrared (NIR) light vegetation reflects versus how much red light it absorbs. These are as a result of:
 
@@ -116,7 +118,7 @@ NDVI visual of the region of interest:
 
 ### RGB Composite
 
-To help visually interpret the land surface, a true-colour RGB composite was created by stacking the Sentinel-3 red, green, and blue bands in the standard order.  The raw radiance values are normalized to the range [0, 1] to ensure consistent contrast and brightness for display. This visualization simulates how the scene would appear to the human eye, allowing us to clearly distinguish between vegetation (green areas), urban zones (gray or brown), and water (dark or bluish areas).
+To help visually interpret the land surface, a true-colour RGB composite was created by stacking the Sentinel-3 red, green, and blue bands in the standard order.  The raw radiance values are normalized to the range [0, 1] to ensure consistent contrast and brightness for display. This visualisation simulates how the scene would appear to the human eye, allowing us to clearly distinguish between vegetation (green areas), urban zones (gray or brown), and water (dark or bluish areas).
 
 ```sh
 # Stack bands into RGB order: [Red, Green, Blue]
@@ -340,7 +342,7 @@ The identical classification pipeline was executed on a second Sentinel-3 image 
 ### 1. Estimated Carbon Emission from Cloud Computing
 We can roughly estimate the carbon footprint of our Colab processing by:
 
-CO2 (kg) = Compute Time (hrs) x Power Usage Effectiveness x Energy Use (kWh/hr) x Carbon Intensity (kg CO 2/kWh) 
+CO2 (kg) = Compute Time (hrs) x Power Usage Effectiveness (PUE) x Energy Use (kWh/hr) x Carbon Intensity (kg CO 2/kWh) 
 
 Reasonable estimated parameters used:
 
@@ -381,4 +383,7 @@ Results:
 
 * EUMETSAT. (n.d.). Sentinel-3 OLCI composites. Retrieved May 23, 2025, from https://fire.trainhub.eumetsat.int/docs/figure1_Sentinel-3_OLCI_RGB.html
 
+* Hill, J. K., Lopes, M., Frison, P.-L., Crowson, M., Warren-Thomas, E. M., Hariyadi, B., Kartika, W. D., Agus, F., Hamer, K. C., Stringer, L. C., & Pettorelli, N. (2020). Improving the accuracy of land cover classification in cloud-persistent areas using optical and radar satellite image time series. Methods in Ecology and Evolution, 11(4), 532–541. https://doi.org/10.1111/2041-210X.13359
+
+* Ismail, M. H., Pakhriazad, H. Z., & Shahrin, M. F. (2009). Evaluating supervised and unsupervised techniques for land cover mapping using remote sensing data. Geografia: Malaysian Journal of Society and Space, 5(1), 1–10. Retrieved from https://journalarticle.ukm.my/917/
 
