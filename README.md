@@ -95,6 +95,8 @@ The raw Sentinel-3 imagery of the first area of interest:
 
 NDVI = (NIR - RED) / (NIR + RED)
 
+<img src="ndvi-spectrum.webp" alt="ndvi-spectra" width="500"/>
+
 NDVI compares how much near-infrared (NIR) light vegetation reflects versus how much red light it absorbs. These are as a result of:
 
 *   Healthy plants absorb most red light for photosynthesis
