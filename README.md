@@ -1,7 +1,5 @@
 # Land Use and Land Cover (LULC) classification of Sentinel-3 imageries using machine learning models
-by: Amirul Azizi 
-
-SID: 22074200
+By: Amirul Azizi  SID: 22074200
 
 ## 📌 Problem Description
 
@@ -370,11 +368,11 @@ For this project assessment, the following parameters were used:
 
 [Link to Green Calculator](https://calculator.green-algorithms.org/)
 
-Results: 
+Absolute CO2 Emission Equivalent: 
 
 ![carbon-footprint](Carbon-footprint.png)
 
-## Reference:
+## References:
 * Petrović, M. (2019, October 2). Machine learning: Introduction to Random Forest. DataHacker. https://datahacker.rs/012-machine-learning-introduction-to-random-forest/
 
 * IBM. (n.d.). Carbon footprint chart. IBM Documentation. Retrieved May 23, 2025, from https://www.ibm.com/docs/en/tarm/8.15.x?topic=charts-carbon-footprint-chart
