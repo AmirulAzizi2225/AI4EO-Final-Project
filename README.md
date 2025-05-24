@@ -11,6 +11,10 @@ The workflow of this project summarised in the figure below:
 
 <img src="LULC-workflow.jpg" alt="LULC workflow" width="700"/>
 
+Principle behind satellite remote sensing:
+
+<img src="elements-of-remote-sensing.jpg.webp" alt="Remote Sensing workflow" width="700"/>
+
 ## K-Means Clustering and Random Forest
 
 **K-Means clustering** is an unsupervised machine learning algorithm used to group data points such as image pixels into a predefined number of clusters based on their feature similarity. In the context of remote sensing, each pixel is treated as a data point, with its spectral values (e.g., RGB, NDVI) serving as input features. The algorithm works by randomly initialising cluster centroids, assigning each pixel to the nearest centroid, recalculating centroids based on cluster membership, and repeating this process until convergence *(Stehman et al. 2019)*. The result is a classified image where each pixel belongs to one of the K clusters. However, these clusters are assigned arbitrary labels, so their real-world meaning (e.g., vegetation, water, urban) must be interpreted manually. While K-Means is simple, fast and effective when classes are well-separated, it requires prior knowledge of the number of clusters and is sensitive to initial conditions and noise.
@@ -329,7 +333,7 @@ The identical classification pipeline was executed on a second Sentinel-3 image 
 
 ### Classification Analysis
 
-<img src="comparison-im2.png" alt="Comparison Image 2" width="700"/>
+![compare-im2](comparison-im2.png)
 
 <img src="confusion-matrix-im2.png" alt="Confusion Matrix Image 2" width="500"/>
 
@@ -376,6 +380,8 @@ Absolute CO2 Emission Equivalent:
 * Petrović, M. (2019, October 2). Machine learning: Introduction to Random Forest. DataHacker. https://datahacker.rs/012-machine-learning-introduction-to-random-forest/
 
 * IBM. (n.d.). Carbon footprint chart. IBM Documentation. Retrieved May 23, 2025, from https://www.ibm.com/docs/en/tarm/8.15.x?topic=charts-carbon-footprint-chart
+
+* EOS Data Analytics. (n.d.). What is remote sensing?. EOS. Retrieved May 23, 2025, from https://eos.com/blog/remote-sensing/
 
 * Wikipedia contributors. (2025, May 21). Confusion matrix. Wikipedia. https://en.wikipedia.org/wiki/Confusion_matrix
 
